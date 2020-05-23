@@ -34,7 +34,7 @@ public class DateConverterPageStates extends ScenarioSteps {
     }
 
     @Step
-    public String getSubmitButtonText() {
-        return dateConverterPage.getSubmitButton().getText();
+    public String getInputDateFieldPlaceholderText() {
+        return dateConverterPage.getInputDateField().getAttribute("placeholder");
     }
 }

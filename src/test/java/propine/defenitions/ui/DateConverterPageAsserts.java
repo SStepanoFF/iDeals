@@ -37,9 +37,9 @@ public class DateConverterPageAsserts {
         assertThat("Result date field label is incorrect", dateConverterPageStates.getResultLabelText(), equalTo(text));
     }
 
-    @Then("converter page Submit button text is (.*)")
-    public void checkSubmitButtonText(String text) {
-        assertThat("Submit button text is incorrect", dateConverterPageStates.getSubmitButtonText(), equalTo(text));
+    @Then("converter page Input date field placeholder text is (.*)")
+    public void checkInputFieldPlaceholder(String text) {
+        assertThat("Input date field placeholder text is incorrect", dateConverterPageStates.getInputDateFieldPlaceholderText(), equalTo(text));
     }
 
 }
