@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.2.8")
+    }
+}
+
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "5.1.0"
+}
+
+apply plugin: 'net.serenity-bdd.aggregator'
+
+//Project info
+group = 'propine'
+version = '1.0-SNAPSHOT'
+description = 'Date converter to GMT0'
+sourceCompatibility = 8
+targetCompatibility = 8
+
+//Build variables
+ext {
+    junitJupiterApiVersion = "5.3.1"
+    slf4jVersion = "1.7.30"
+    cucumberVersion = "4.2.0"
+    serenityCucumberVersion = "1.0.12"
+    serenityVersion = "2.0.48"
+    restAssuredVersion = '4.3.0'
+}
+
+//Task configurations
+defaultTasks 'clean', 'build'
+
+test {
+    doFirst {
+        systemProperties System.getProperties()
+    }
+    outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            logger.lifecycle "\nTest result: ${result.resultType}"
+            logger.lifecycle "Test summary: ${result.testCount} tests, " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped"
+        }
+    }
+    finalizedBy 'aggregate'
+}
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${junitJupiterApiVersion}"
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junitJupiterApiVersion}"
+    compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: "${slf4jVersion}"
+    compile group: 'net.serenity-bdd', name: 'serenity-cucumber4', version: "${serenityCucumberVersion}"
+    compile group: 'net.serenity-bdd', name: 'serenity-core', version: "${serenityVersion}"
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: "${restAssuredVersion}"
+
+    compile group: 'io.cucumber', name: 'cucumber-core', version: "${cucumberVersion}"
+    testCompile group: 'io.cucumber', name: 'cucumber-junit', version: "${cucumberVersion}"
+}
+
+gradle.startParameter.continueOnFailure = true
