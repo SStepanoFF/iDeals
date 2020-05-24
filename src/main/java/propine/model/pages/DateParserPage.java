@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 @Getter
-public class DateConverterPage extends PageObject {
+public class DateParserPage extends PageObject {
 
     @FindBy(className = "form-control")
     private WebElementFacade inputDateField;

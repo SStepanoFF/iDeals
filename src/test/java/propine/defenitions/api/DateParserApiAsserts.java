@@ -8,7 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static propine.variables.SessionVariables.API_RESPONSE;
 
-public class DateConverterApiAsserts {
+public class DateParserApiAsserts {
 
     @Then("API response status code is (.*)")
     public void checkStatusCode(int statusCode) {

@@ -13,7 +13,7 @@ import static propine.utils.PropertiesManager.getProperty;
 import static propine.variables.PropertiesVariables.ENV_URL;
 import static propine.variables.SessionVariables.API_RESPONSE;
 
-public class DateConverterApiActions extends ScenarioSteps {
+public class DateParserApiActions extends ScenarioSteps {
 
     @Step
     public Response submitDate(String date) {
