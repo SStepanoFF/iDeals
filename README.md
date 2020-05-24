@@ -22,21 +22,22 @@ Test Automation project for [Date Converter](https://vast-dawn-73245.herokuapp.c
   - setup Java JDK
   - setup Chrome/FireFox browser
   - Download project dependencies from build.gradle file
-#2. How to execute tests
+#3. How to execute tests
 
-##2.1 Execute for the Chrome/Firefox browser 
-Set `-Dwebdriver.driver` property `chrome` or `firefox`
+##3.1 Execute all tests
+For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`
 `$ ./gradlew -Dwebdriver.driver=chrome`
 
-##2.2 Execute with special tags
+##3.2 Execute with special tags
 It is possible to execute tests by tag ('ui', 'api')
 `$ ./gradlew -Dtags=api`
 
-#3. How it works:
+#4. How it works:
 - Gradle is a building tool
 - `CucumberRunnerTest.class` runs cucumber features with serenity
 - Serenity is responsible for the webbDriver and report generation. Serenity properties in `serenity.properties` file
-- `/src/test/resources/features` - feature files with tests folder
+- `/src/test/resources/features` - feature files
 
-#4. Report
-UI HTML report is generates automatically after run to `/build/reports/serenity-reports/index.html`
+#5. Tests Report
+UI HTML report is generates automatically after execution to `./build/reports/serenity-reports/index.html`
+Screenshots are generated for the failed UI tests (configurable)
