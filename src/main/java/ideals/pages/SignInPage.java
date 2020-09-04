@@ -16,4 +16,7 @@ public class SignInPage extends CommonLandingPage {
     @FindBy(id = "SubmitLogin")
     private WebElementFacade signInButton;
 
+    @FindBy(className = "alert-danger")
+    private WebElementFacade errorMessage;
+
 }

@@ -23,4 +23,11 @@ public class SignInPageDefinitions {
     public void clickSignInButton() {
         signInPageActions.clickSignInButton();
     }
+
+    @When("enter (.*) email and (.*) password and sign in")
+    public void signIn(String email, String password) {
+        enterEmail(email);
+        enterPassword(password);
+        clickSignInButton();
+    }
 }

@@ -9,7 +9,7 @@ public class MyAccountPageStates extends ScenarioSteps {
     private MyAccountPage myAccountPage;
 
     @Step
-    public boolean isMyAccountPageOpened() {
+    public boolean isGreetingInfoVisible() {
         return myAccountPage.getGreetingInfo().isVisible();
     }
 
@@ -19,7 +19,17 @@ public class MyAccountPageStates extends ScenarioSteps {
     }
 
     @Step
-    public String getCustomerName() {
+    public String getCustomerHeaderButtonText() {
         return myAccountPage.getAccountHeaderButton().getText();
+    }
+
+    @Step
+    public boolean isCustomerHeaderButtonVisible() {
+        return myAccountPage.getAccountHeaderButton().isCurrentlyVisible();
+    }
+
+    @Step
+    public boolean isSignOutButtonVisible() {
+        return myAccountPage.getSignOutHeaderButton().isVisible();
     }
 }

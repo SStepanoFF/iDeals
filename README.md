@@ -21,7 +21,7 @@ Test Automation project for the tasks:
 #2. How to setup and execute 
 
 ##2.1 Setup environment:
-  - setup Java JDK
+  - setup Java JDK 1.8 or later
   - setup Chrome/FireFox browser
   - Download project dependencies from build.gradle file
 #3. How to execute tests

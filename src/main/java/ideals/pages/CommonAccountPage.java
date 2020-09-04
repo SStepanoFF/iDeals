@@ -11,5 +11,5 @@ public class CommonAccountPage extends CommonPage {
     WebElementFacade accountHeaderButton;
 
     @FindBy(className = "logout")
-    WebElementFacade logoutHeaderButton;
+    WebElementFacade signOutHeaderButton;
 }

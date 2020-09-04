@@ -10,12 +10,27 @@ public class SignInPageStates extends ScenarioSteps {
 
     @Step
     public String getEmailInputText() {
-        return signInPage.getEmailInput().getText();
+        return signInPage.getEmailInput().getValue();
     }
 
     @Step
     public String getEmailInputBorderColour() {
         return signInPage.getEmailInput().getCssValue("color");
+    }
+
+    @Step
+    public boolean isEmailInputPresent() {
+        return signInPage.getEmailInput().isPresent();
+    }
+
+    @Step
+    public boolean isErrorMessagePresent() {
+        return signInPage.getErrorMessage().isPresent();
+    }
+
+    @Step
+    public String getErrorMessageText() {
+        return signInPage.getErrorMessage().getText();
     }
 
 }

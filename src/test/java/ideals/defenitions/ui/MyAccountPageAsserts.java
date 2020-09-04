@@ -14,7 +14,7 @@ public class MyAccountPageAsserts {
 
     @Then("My Account page is opened")
     public void checkMyAccountPageIsOpened() {
-        assertThat("My Account page is not opened", myAccountPageStates.isMyAccountPageOpened());
+        assertThat("My Account page is not opened", myAccountPageStates.isGreetingInfoVisible());
     }
 
     @Then("Greeting text is (.*) on My Account page")
@@ -22,8 +22,18 @@ public class MyAccountPageAsserts {
         assertThat("My Account greeting text is incorrect", myAccountPageStates.getGreetingText(), is(greetingText));
     }
 
-    @Then("customer name is (.*) on the header")
+    @Then("customer button name is (.*) on the header")
     public void checkCustomerNameOnTheHeader(String customerName) {
-        assertThat("Incorrect customer name on the header", myAccountPageStates.getCustomerName(), is(customerName));
+        assertThat("Incorrect customer name on the header", myAccountPageStates.getCustomerHeaderButtonText(), is(customerName));
+    }
+
+    @Then("customer button is not present on the header")
+    public void checkCustomerButtonPresentOnTheHeader() {
+        assertThat("Customer button is present on the header", !myAccountPageStates.isCustomerHeaderButtonVisible());
+    }
+
+    @Then("Sign Out button is visible on the header")
+    public void checkSignOutButtonOnTheHeader() {
+        assertThat("Sign Out button is not visible on the header", myAccountPageStates.isSignOutButtonVisible());
     }
 }

@@ -9,7 +9,7 @@ import static ideals.variables.PropertiesVariables.UI_TEST_URL;
 import static net.serenitybdd.core.environment.ConfiguredEnvironment.getEnvironmentVariables;
 import static net.thucydides.core.ThucydidesSystemProperty.WEBDRIVER_BASE_URL;
 
-public class LandingPageActions extends ScenarioSteps {
+public class CommonLandingPageActions extends ScenarioSteps {
 
     private CommonLandingPage commonLandingPage;
 

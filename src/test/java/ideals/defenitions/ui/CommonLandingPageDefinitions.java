@@ -2,22 +2,22 @@ package ideals.defenitions.ui;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import ideals.steps.ui.LandingPageActions;
+import ideals.steps.ui.CommonLandingPageActions;
 import net.thucydides.core.annotations.Steps;
 
-public class LandingPageDefinitions {
+public class CommonLandingPageDefinitions {
 
     @Steps
-    private LandingPageActions landingPageActions;
+    private CommonLandingPageActions commonLandingPageActions;
 
     @Given("open Landing page")
     public void openLandingPage() {
-        landingPageActions.openPage();
+        commonLandingPageActions.openPage();
     }
 
     @When("click Sign In header button")
     public void clickSignInHeaderButton() {
-        landingPageActions.clickHeaderSignInButton();
+        commonLandingPageActions.clickHeaderSignInButton();
     }
 
 }
