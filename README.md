@@ -1,11 +1,13 @@
-# Propine
-Test Automation project for [Date Converter](https://vast-dawn-73245.herokuapp.com/)
+# iDeals
+Test Automation project for the tasks:
+[UI Website](http://automationpractice.com/)
+[API](https://reqres.in/)
 
 #1. About
 
 ##1.1 Environment:
 - Operation system: Windows, Mac OS, Linux //tested only on Mac OS
-- Chrome browser version 83.0.4103.39
+- Chrome browser version 84.0.4147.135
 - FireFox browser version 76.0.1
 - Java JDK 1.8 or higher
 
@@ -25,7 +27,9 @@ Test Automation project for [Date Converter](https://vast-dawn-73245.herokuapp.c
 #3. How to execute tests
 
 ##3.1 Execute all tests
-For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`
+For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
+If it's not set Chrome browser will be used by default
+
 `$ ./gradlew -Dwebdriver.driver=chrome`
 
 ##3.2 Execute with special tags
@@ -40,4 +44,5 @@ It is possible to execute tests by tag ('ui', 'api')
 
 #5. Tests Report
 UI HTML report is generates automatically after execution to `./build/reports/serenity-reports/index.html`
+
 Screenshots are generated for the failed UI tests (configurable)

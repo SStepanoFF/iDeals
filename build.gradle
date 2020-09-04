@@ -15,9 +15,9 @@ plugins {
 apply plugin: 'net.serenity-bdd.aggregator'
 
 //Project info
-group = 'propine'
+group = 'iDeals'
 version = '1.0-SNAPSHOT'
-description = 'Date converter to GMT0'
+description = 'iDeals QA Automation tasks'
 sourceCompatibility = 8
 targetCompatibility = 8
 
@@ -28,7 +28,8 @@ ext {
     cucumberVersion = "4.2.0"
     serenityCucumberVersion = "1.0.12"
     serenityVersion = "2.0.48"
-    restAssuredVersion = '4.3.0'
+    restAssuredVersion = "4.3.0"
+    jacksonCoreVersion = "2.11.2"
 }
 
 //Task configurations
@@ -69,6 +70,8 @@ dependencies {
 
     compile group: 'io.cucumber', name: 'cucumber-core', version: "${cucumberVersion}"
     testCompile group: 'io.cucumber', name: 'cucumber-junit', version: "${cucumberVersion}"
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "${jacksonCoreVersion}"
 }
 
 gradle.startParameter.continueOnFailure = true
