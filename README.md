@@ -26,15 +26,23 @@ Test Automation project for the tasks:
   - Download project dependencies from build.gradle file
 #3. How to execute tests
 
-##3.1 Execute all tests
+##3.1 Sequential tests execution
+###3.1.1 All tests
 For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
 If it's not set Chrome browser will be used by default
 
 `$ ./gradlew -Dwebdriver.driver=chrome`
 
-##3.2 Execute with special tags
-It is possible to execute tests by tag ('ui', 'api')
-`$ ./gradlew -Dtags=api`
+##3.1.2 Execute with special tags
+It is possible to execute tests by tag ('@ui', '@api')
+`$ ./gradlew -Dtags=@api`
+
+##3.2 Parallel test execution
+###3.2.1 All tests
+`$ ./gradlew clean testParallel`
+
+##3.1.2 Execute with special tags
+`$ ./gradlew -DtestParallel.tags=@api`
 
 #4. How it works:
 - Gradle is a building tool

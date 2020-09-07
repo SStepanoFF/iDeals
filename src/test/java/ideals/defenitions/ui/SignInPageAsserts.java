@@ -34,14 +34,14 @@ public class SignInPageAsserts {
     @Then("email input field has (.*) background color")
     public void checkEmailFieldColor(String color) {
         assertThat("Email input field color is incorrect", signInPageStates.getEmailInputBorderColour(),
-                equalTo(FieldColor.valueOf(color.toUpperCase()).getRgbValue()));
+                containsString(FieldColor.valueOf(color.toUpperCase()).getRgbValue()));
     }
 
     @Getter
     @AllArgsConstructor
     public enum FieldColor {
-        RED("rgba(241, 51, 64, 1)"),
-        GREEN("rgba(53, 179, 63, 1)");
+        RED("241, 51, 64"),
+        GREEN("53, 179, 63");
 
         private String rgbValue;
     }

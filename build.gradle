@@ -10,6 +10,8 @@ buildscript {
 plugins {
     id "java"
     id "io.freefair.lombok" version "5.1.0"
+    id "com.gitlab.et.paralleltests" version "1.0.2"
+//    id "io.qameta.allure" version "2.6.0"
 }
 
 apply plugin: 'net.serenity-bdd.aggregator'
@@ -28,8 +30,9 @@ ext {
     cucumberVersion = "4.2.0"
     serenityCucumberVersion = "1.0.12"
     serenityVersion = "2.0.48"
-    restAssuredVersion = "4.3.0"
+    restAssuredVersion = "4.2.0"
     jacksonCoreVersion = "2.11.2"
+    hamcrestDateVersion = "2.0.7"
 }
 
 //Task configurations
@@ -51,8 +54,44 @@ test {
         }
     }
     finalizedBy 'aggregate'
+//    finalizedBy 'allureReport'
 }
 
+testParallel {
+//    test.systemProperties System.getProperties()
+    printConfiguration = true
+    parallelExecutions = 5
+    cucumberCliClass = 'cucumber.api.cli.Main'
+    glue ="ideals"
+    featureDir= "src/test/resources/features/"
+    printConfiguration = true
+    strict = true
+    printTestOutput = true
+    tags = "not @skip"
+    parallelScenarios = true
+    cucumberPlugins = [
+            "pretty",
+            "default_summary",
+            "junit:build/test-results/cucumber/cucumber-result.xml",
+            "json:build/test-results/cucumber-json/cucumber.json",
+            "junit:build/test-results/junit/junit.xml",
+    ]
+}
+
+//task parallel {
+//    doFirst {
+//        System.properties  System.getProperties()
+//    }
+//    finalizedBy 'aggregate'
+//}
+
+// Allure settings
+//allure {
+//    version = "2.7.0"
+//    resultsDir = file('allure-results')
+//    reportDir = file('allure-reports')
+//    clean = true
+//}
 
 repositories {
     mavenCentral()
@@ -70,7 +109,10 @@ dependencies {
     compile group: 'io.cucumber', name: 'cucumber-core', version: "${cucumberVersion}"
     testCompile group: 'io.cucumber', name: 'cucumber-junit', version: "${cucumberVersion}"
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacksonCoreVersion}"
-    testCompile group: 'org.exparity', name: 'hamcrest-date', version: '2.0.7'
+    testCompile group: 'org.exparity', name: 'hamcrest-date', version: "${hamcrestDateVersion}"
+
+//    compile group: 'io.qameta.allure', name: 'allure-cucumber4-jvm', version: "2.12.1'"//"${allureVersion}"
 }
 
 gradle.startParameter.continueOnFailure = true
+//aggregate.dependsOn tasks.testParallel
