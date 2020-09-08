@@ -57,15 +57,18 @@ test {
 }
 
 testParallel {
-
-    if(System.getProperty("webdriver.driver") != null) {
-        properties ="webdriver.driver="+System.getProperty("webdriver.driver")
+    if (System.getProperty("webdriver.driver") != null) {
+        properties = "webdriver.driver=" + System.getProperty("webdriver.driver")
+    }
+    if (System.getProperty("webdriver.remote.driver") != null) {
+        properties = "webdriver.remote.driver=" + System.getProperty("webdriver.remote.driver")
+        properties = "webdriver.remote.url=" + System.getProperty("webdriver.remote.url")
     }
     printConfiguration = true
-    parallelExecutions = 5
+    parallelExecutions = 6
     cucumberCliClass = 'cucumber.api.cli.Main'
-    glue ="ideals"
-    featureDir= "src/test/resources/features/"
+    glue = "ideals"
+    featureDir = "src/test/resources/features/"
     printConfiguration = true
     strict = true
     printTestOutput = true

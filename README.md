@@ -18,59 +18,61 @@ Test Automation project for the tasks:
 - Report - Serenity report
 - [Lombok](https://objectcomputing.com/resources/publications/sett/january-2010-reducing-boilerplate-code-with-project-lombok) - for reducing code
 
-#2. How to setup and execute 
+#2. Setup
 
 ##2.1 Setup environment:
   - setup Java JDK 1.8 or later
   - setup Chrome/FireFox browser
   - Download project dependencies from build.gradle file
+  
 #3. How to execute tests
 
 ##3.1 Sequential tests execution
 ###3.1.1 All tests
-`$ ./gradlew`
 For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
-If it's not set Chrome browser will be used by default
 
 `$ ./gradlew -Dwebdriver.driver=chrome`
 
 ###3.1.2 Execute with special tags
 It is possible to execute tests by tag ('@ui', '@api')
-`$ ./gradlew -Dtags=@api`
+`$ ./gradlew -Dwebdriver.driver=chrome -Dtags=@api`
 
 ##3.2 Parallel test execution
+Number of threads for the parallel execution set in `parallelExecutions={threads number}` in gradle `testParallel` task
+
 ###3.2.1 All tests
-`$ ./gradlew parallel`
+
 For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
-If it's not set Chrome browser will be used by default.
-`$ ./gradlew parallel`
+
+`$ ./gradlew parallel -Dwebdriver.driver=chrome`
 
 ###3.2.2 Execute with special tags
 `$ ./gradlew parallel -Dtags=@api -Dwebdriver.driver=firefox`
 
-##3.3 Remote execution on Selenium Grid
+##3.3 Remote Parallel execution on Selenium Grid
+
 ###3.3.1 Selenium grid configuration
 On the remote server have to run Selenium Grid hub and register nodes. Json configurations for the hub and node are in 'gridConfig' folder.
 
 ####3.3.1.1 Start Selenium grid hub
-`$  java -jar ./gridConfig/selenium-server-standalone-3.141.59.jar -role hub -hubConfig hubConfig.json`
+`$  java -jar ./gridConfig/selenium-server-standalone-3.141.5.jar -role hub -hubConfig ./gridConfig/hubConfig.json`
 
 ####3.3.1.2 Register Selenium grid nodes
-`$  java -jar ./gridConfig/selenium-server-standalone-3.141.59.jar -role node -hub http://localhost:4444/grid/register -nodeConfig nodeConfig.json`
+In nodes there are number of browser and browser type configurations
+`$  java -Dwebdriver.chrome.driver="drivers/mac/chromedriver" -Dwebdriver.gecko.driver="drivers/mac/geckodriver" -jar ./gridConfig/selenium-server-standalone-3.141.5.jar -role node -hub http://localhost:4444/grid/register -nodeConfig ./gridConfig/nodeConfig.json`
 
-###3.3.2 Serenity configuration
-At the 'serenity.properties' set up `webdriver.remote.url`
-
-###3.3.3 Execute
-Execute with the same commands, but it will be use hud url and registered nodes for the test run.
+###3.3.2 Execute
+For the Chrome/Firefox browser need to set `-Dwebdriver.remote.driver` property `chrome` or `firefox`.
+`webdriver.remote.url` - URL of the Grid hub
+`$ ./gradlew parallel -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=firefox -Dtags=@ui`
 
 ##3.4 Remote execution on Jenkins
-To execute tests on Jenkins have to set up a job with the same commands as for the local
+To execute tests on Jenkins have to set up a job with the same commands as for the local execution
 
 #4. How it works:
 - Gradle is a building tool
 - `CucumberRunnerTest.class` runs cucumber features with serenity
-- Serenity is responsible for the webbDriver and report generation. Serenity properties in `serenity.properties` file
+- Serenity is responsible for the WebDriver and report generation. Serenity properties in `serenity.properties` file
 - `/src/test/resources/features` - path to the feature files
 
 #5. Tests Report
