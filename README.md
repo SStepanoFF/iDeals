@@ -28,29 +28,55 @@ Test Automation project for the tasks:
 
 ##3.1 Sequential tests execution
 ###3.1.1 All tests
+`$ ./gradlew`
 For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
 If it's not set Chrome browser will be used by default
 
 `$ ./gradlew -Dwebdriver.driver=chrome`
 
-##3.1.2 Execute with special tags
+###3.1.2 Execute with special tags
 It is possible to execute tests by tag ('@ui', '@api')
 `$ ./gradlew -Dtags=@api`
 
 ##3.2 Parallel test execution
 ###3.2.1 All tests
-`$ ./gradlew clean testParallel`
+`$ ./gradlew parallel`
+For the Chrome/Firefox browser need to set `-Dwebdriver.driver` property `chrome` or `firefox`.
+If it's not set Chrome browser will be used by default.
+`$ ./gradlew parallel`
 
-##3.1.2 Execute with special tags
-`$ ./gradlew -DtestParallel.tags=@api`
+###3.2.2 Execute with special tags
+`$ ./gradlew parallel -Dtags=@api -Dwebdriver.driver=firefox`
+
+##3.3 Remote execution on Selenium Grid
+###3.3.1 Selenium grid configuration
+On the remote server have to run Selenium Grid hub and register nodes. Json configurations for the hub and node are in 'gridConfig' folder.
+
+####3.3.1.1 Start Selenium grid hub
+`$  java -jar ./gridConfig/selenium-server-standalone-3.141.59.jar -role hub -hubConfig hubConfig.json`
+
+####3.3.1.2 Register Selenium grid nodes
+`$  java -jar ./gridConfig/selenium-server-standalone-3.141.59.jar -role node -hub http://localhost:4444/grid/register -nodeConfig nodeConfig.json`
+
+###3.3.2 Serenity configuration
+At the 'serenity.properties' set up `webdriver.remote.url`
+
+###3.3.3 Execute
+Execute with the same commands, but it will be use hud url and registered nodes for the test run.
+
+##3.4 Remote execution on Jenkins
+To execute tests on Jenkins have to set up a job with the same commands as for the local
 
 #4. How it works:
 - Gradle is a building tool
 - `CucumberRunnerTest.class` runs cucumber features with serenity
 - Serenity is responsible for the webbDriver and report generation. Serenity properties in `serenity.properties` file
-- `/src/test/resources/features` - feature files
+- `/src/test/resources/features` - path to the feature files
 
 #5. Tests Report
-UI HTML report is generates automatically after execution to `./build/reports/serenity-reports/index.html`
+Test reports are generated to the `build/test-results`.
 
-Screenshots are generated for the failed UI tests (configurable)
+UI HTML Cucumber report is generated to `/build/test-results/cucumber-reports/html/cucumber-html-reports/overview-features.html`.
+
+UI HTML Serenity report is generated automatically after sequential execution to `./build/reports/serenity-reports/index.html`.
+Screenshots are generated for the Serenity report for  failed UI tests (configurable)

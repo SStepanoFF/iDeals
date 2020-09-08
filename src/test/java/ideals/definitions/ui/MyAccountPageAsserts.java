@@ -1,4 +1,4 @@
-package ideals.defenitions.ui;
+package ideals.definitions.ui;
 
 import cucumber.api.java.en.Then;
 import ideals.steps.ui.MyAccountPageStates;

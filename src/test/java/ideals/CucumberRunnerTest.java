@@ -11,8 +11,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin = {
         "pretty",
         "default_summary",
-        "junit:build/test-results/cucumber/cucumber-result.xml"
-//        "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
-}, features = {"src/test/resources/features"}, glue = {"ideals"}, tags = "not @skip")
+        "html:build/test-results/cucumber-reports",
+        "junit:build/test-results/cucumber-reports/cucumber-result.xml",
+        "json:build/test-results/cucumber-reports/cucumber.json",
+        "junit:build/test-results/junit/junit.xml",
+}, monochrome = true, features = {"src/test/resources/features"}, glue = {"ideals"}, tags = "not @skip")
 public class CucumberRunnerTest {
 }

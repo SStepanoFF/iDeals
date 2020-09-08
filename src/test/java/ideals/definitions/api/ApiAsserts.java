@@ -1,4 +1,4 @@
-package ideals.defenitions.api;
+package ideals.definitions.api;
 
 import cucumber.api.java.en.Then;
 import ideals.model.dto.response.CreateUserResponseDto;
@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 import static ideals.variables.SessionVariables.API_RESPONSE;
-import static ideals.variables.SessionVariables.UPDATE_DATE_TIME;
+import static ideals.variables.SessionVariables.UPDATED_DATE_TIME;
 import static net.serenitybdd.core.Serenity.sessionVariableCalled;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -69,7 +69,7 @@ public class ApiAsserts {
         Response response = Serenity.sessionVariableCalled(API_RESPONSE);
         LocalDateTime actualDateTime = ZonedDateTime.parse(response.path("updatedAt")).toLocalDateTime();
 
-        LocalDateTime expectedDateTime = Serenity.sessionVariableCalled(UPDATE_DATE_TIME);
+        LocalDateTime expectedDateTime = Serenity.sessionVariableCalled(UPDATED_DATE_TIME);
         assertThat("", actualDateTime, LocalDateTimeMatchers.within(1, ChronoUnit.SECONDS, expectedDateTime));
     }
 

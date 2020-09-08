@@ -1,4 +1,4 @@
-package ideals.defenitions.ui;
+package ideals.definitions.ui;
 
 import cucumber.api.java.en.When;
 import ideals.steps.ui.CommonAccountPageActions;

@@ -1,4 +1,4 @@
-package ideals.defenitions.api;
+package ideals.definitions.api;
 
 import cucumber.api.java.en.When;
 import ideals.steps.api.ApiActions;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static ideals.utils.PropertiesManager.getProperty;
 import static ideals.variables.PropertiesVariables.API_TEST_URL;
 import static ideals.variables.SessionVariables.API_RESPONSE;
-import static ideals.variables.SessionVariables.UPDATE_DATE_TIME;
+import static ideals.variables.SessionVariables.UPDATED_DATE_TIME;
 import static ideals.variables.SessionVariables.USER_ID;
 import static io.restassured.RestAssured.given;
 
@@ -57,7 +57,7 @@ public class ApiDefinitions {
                 .when()
                 .patch(BASE_URL + USER_OPERATIONS + "/" + id);
         Serenity.setSessionVariable(API_RESPONSE).to(response);
-        Serenity.setSessionVariable(UPDATE_DATE_TIME).to(LocalDateTime.now(ZoneOffset.UTC));
+        Serenity.setSessionVariable(UPDATED_DATE_TIME).to(LocalDateTime.now(ZoneOffset.UTC));
     }
 
     @When("PUT update user with id=(.*) by data:")
@@ -69,7 +69,7 @@ public class ApiDefinitions {
                 .when()
                 .put(BASE_URL + USER_OPERATIONS + "/" + id);
         Serenity.setSessionVariable(API_RESPONSE).to(response);
-        Serenity.setSessionVariable(UPDATE_DATE_TIME).to(LocalDateTime.now(ZoneOffset.UTC));
+        Serenity.setSessionVariable(UPDATED_DATE_TIME).to(LocalDateTime.now(ZoneOffset.UTC));
     }
 
     @When("delete user with id=(.*)")

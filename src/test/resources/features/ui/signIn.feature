@@ -13,7 +13,7 @@ Feature: [UI] Sign in verification
     And customer button name is Sergii Stepanov on the header
     And Sign Out button is visible on the header
 
-@my
+
   Scenario: Email input field text is entered correctly
     Given open Landing page
     When click Sign In header button
